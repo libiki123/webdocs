@@ -10,7 +10,7 @@ import { themes as prismThemes } from "prism-react-renderer";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "Ethan Docs",
+  title: "Ethan Insights",
   tagline: "Dinosaurs are cool",
   favicon: "img/favicon.ico",
 
@@ -148,18 +148,29 @@ const config = {
         ],
         copyright: `Copyright © ${new Date().getFullYear()} Ethan Truong - Built with Docusaurus.`,
       },
+
       prism: {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
       },
-      algolia: {
-        appId: "YOUR_ALGOLIA_APP_ID", //TODO: Add later
-        apiKey: "YOUR_ALGOLIA_API_KEY",
-        indexName: "YOUR_INDEX_NAME",
-        contextualSearch: true, // Optional, enables contextual search
-        searchParameters: {}, // Optional, additional parameters
-      },
     }),
+
+  themes: [
+    // ... Your other themes.
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
+      ({
+        // ... Your options.
+        // `hashed` is recommended as long-term-cache of index file is possible.
+        hashed: true,
+        // For Docs using Chinese, The `language` is recommended to set to:
+        // ```
+        // language: ["en", "zh"],
+        // ```
+      }),
+    ],
+  ],
 };
 
 export default config;

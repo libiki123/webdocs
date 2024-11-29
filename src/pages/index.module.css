@@ -3,21 +3,33 @@
  * and scoped locally.
  */
 
-.heroBanner {
-  padding: 4rem 0;
-  text-align: center;
-  position: relative;
+.shapeFill {
+  fill: var(--ifm-color-primary);
+}
+
+.shapeFillBlack {
+  fill: #2e3032ff;
+}
+
+.topShape {
+  width: 100%;
   overflow: hidden;
+  line-height: 0;
 }
 
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
-  }
+.bottomShape {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
 }
 
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.svg {
+  width: calc(143% + 1px);
+  height: 50px;
+  transform: rotateY(180deg);
+}
+
+.spacer {
+  flex: 1; /* Adjust this value to control the amount of space */
 }
