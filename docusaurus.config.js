@@ -18,12 +18,12 @@ const config = {
   url: "https://libiki123.github.io",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: "/MyWebDocs",
+  baseUrl: "/webdocs",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: "libiki123", // Usually your GitHub org/user name.
-  projectName: "MyWebDocs", // Usually your repo name.
+  projectName: "webdocs", // Usually your repo name.
   deploymentBranch: "gh-pages",
 
   onBrokenLinks: "throw",
