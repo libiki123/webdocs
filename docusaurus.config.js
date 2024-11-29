@@ -46,6 +46,7 @@ const config = {
           routeBasePath: "docs",
           sidebarPath: "./sidebars.js",
         },
+        blog: {},
         theme: {
           customCss: "./src/css/custom.css",
         },
