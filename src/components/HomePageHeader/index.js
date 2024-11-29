@@ -1,24 +1,3 @@
-// import clsx from "clsx";
-// import Link from "@docusaurus/Link";
-// import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-
-// import Heading from "@theme/Heading";
-// import styles from "./styles.module.css";
-
-// export default function HomepageHeader() {
-//   const { siteConfig } = useDocusaurusContext();
-//   return (
-//     <header className={clsx("hero hero--primary", styles.heroBanner)}>
-//       <div className="container">
-//         <Heading as="h1" className="hero__title">
-//           {siteConfig.title}
-//         </Heading>
-//         <p className="hero__subtitle">{siteConfig.tagline}</p>
-//       </div>
-//     </header>
-//   );
-// }
-
 import Grid from "@mui/material/Grid";
 import clsx from "clsx";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -27,7 +6,6 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { Container } from "@mui/material";
 import Link from "@docusaurus/Link";
-import useBaseUrl from "@docusaurus/useBaseUrl";
 
 import styles from "./styles.module.css";
 
