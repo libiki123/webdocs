@@ -103,7 +103,7 @@ export default function HomepageHeader() {
               <Grid item>
                 <Link
                   className="button"
-                  to="https://github.com/FedericoTartarini"
+                  to="https://github.com/libiki123"
                   style={{ padding: "1rem" }}
                 >
                   <GitHubIcon fontSize={"large"} />
@@ -113,7 +113,7 @@ export default function HomepageHeader() {
               <Grid item>
                 <Link
                   className="button"
-                  to="https://www.linkedin.com/in/federico-tartarini-3991995b/"
+                  to="https://www.linkedin.com/in/ethan-truong-abc123/"
                   style={{ padding: "1rem" }}
                 >
                   <LinkedInIcon fontSize={"large"} />
@@ -123,7 +123,7 @@ export default function HomepageHeader() {
               <Grid item>
                 <Link
                   className="button"
-                  to="https://www.youtube.com/c/FedericoTartarini"
+                  to="mailto:bangatruong@gmail.com"
                   style={{ padding: "1rem" }}
                 >
                   <EmailIcon fontSize={"large"} />
@@ -132,7 +132,7 @@ export default function HomepageHeader() {
             </Grid>
             <div className={styles.buttons}>
               <Link
-                className="button button--secondary button--lg"
+                className={`button button--secondary button--lg ${styles["button--orange"]}`}
                 to="https://libiki123.github.io/ethan-truong/"
               >
                 About me

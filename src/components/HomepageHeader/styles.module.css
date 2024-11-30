@@ -33,3 +33,12 @@
   align-items: center;
   justify-content: center;
 }
+
+.button--orange {
+  background-color: #ffd8a5;
+  border: 1px solid #ffa600;
+}
+
+.button--orange:hover {
+  background-color: #ffcb6a;
+}
