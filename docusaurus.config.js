@@ -12,7 +12,7 @@ import { themes as prismThemes } from "prism-react-renderer";
 const config = {
   title: "Ethan Insights",
   tagline: "Dinosaurs are cool",
-  favicon: "img/favicon.ico",
+  favicon: "img/docsIcon.png",
 
   // Set the production url of your site here
   url: "https://libiki123.github.io",
@@ -78,6 +78,13 @@ const config = {
             to: "/docs/unity-docs/intro",
             type: "docSidebar",
             sidebarId: "unitySidebar",
+          },
+          {
+            label: "Interview",
+            to: "/docs/interview-docs/unity",
+            type: "docSidebar",
+            sidebarId: "interviewSidebar",
+            position: "right",
           },
           // {
           //   type: "dropdown",

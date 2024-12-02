@@ -86,7 +86,7 @@ export default function HomepageHeader() {
           >
             <h1 className="hero__title">{siteConfig.title}</h1>
 
-            <h3>Middle Game Developer</h3>
+            <h3>Game Developer</h3>
 
             <p>
               A documentation website helps me keep track of the features I
