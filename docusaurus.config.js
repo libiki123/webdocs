@@ -68,6 +68,12 @@ const config = {
         items: [
           // Left side
           {
+            label: "Interview",
+            to: "/docs/interview-docs/unity",
+            type: "docSidebar",
+            sidebarId: "interviewSidebar",
+          },
+          {
             label: "Git",
             to: "/docs/git-docs/intro",
             type: "docSidebar",
@@ -79,13 +85,7 @@ const config = {
             type: "docSidebar",
             sidebarId: "unitySidebar",
           },
-          {
-            label: "Interview",
-            to: "/docs/interview-docs/unity",
-            type: "docSidebar",
-            sidebarId: "interviewSidebar",
-            position: "right",
-          },
+
           // {
           //   type: "dropdown",
           //   label: "Docs",

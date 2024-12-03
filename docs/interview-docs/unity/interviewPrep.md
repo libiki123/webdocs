@@ -29,7 +29,7 @@ Your interview preparation for Unity should vary based on your experience and th
 
 Some interview questions that may come up during the process:
 
-1. Tell me about yourself
+1. **Tell me about yourself**
 
 2. Tell me where a time you strongly disagree with someone in your team
 
@@ -37,20 +37,30 @@ Some interview questions that may come up during the process:
 
 . Describe one project in your portfolio
 
-. How would you optimize code, scene, material, shader to make it compatible with even low end phone?
+6. **How would you optimize code, scene, material, shader to make it compatible with even low end phone?**
+
+   Check out my [Unity Optimization](../../unity-docs/unity-optimizing.md) page for more details
+
+   - You can use **Frame debugger** to check draw call to check where/what being drawing each frame, combine sprite using **Sprite Atlas** to reduce draw call
+   - You can use custom **Tick System** to replace normal **Update** in mono, this will reduce the update call for logic that doesnt need to be updated every frame
+   - you can create a **Benchmark Tool** to test your code to measure its performance, this will help you identify where/what being slow
+   - Using **Hash String** with animator. Animmator functions usually hash the string you pass in the parameter and this will cost some performant, we can reduce by using **Animator.StringToHash** from the start. Same thing with change shader property, we can use **Shader.PropertyToID** to hash the property name and change the shader property with the hash value.
+   - Changing renderer pipeline setting, you can turn off setting like **Depth Texture** to reduce draw call.
+   - For instantiate lots of object, you can use **Object Pooling System** to reuse the object and reduce garbage collection.
+   - Compressing textures, sprites and audios. Change the compression setting to reduce the size of the texture, sprite and audio but make sure the quality is not degraded.
 
 . Do you know how to use profiler?
 
 . How do you reduce size of the game without satisfied the quality?
 
-. What api do you use to get data from server NFT?
-
 . Which programming pattern you implement in your project?
 
 . Have you play this \*\*\*\* game? can do deconstruct and explain how this game works?
+
+. Do you know about addressable and assetBundle?
 
 ---
 
 ## Questions to Ask
 
-You will need to prepare some questions to ask during the interview.
+You will need to prepare some questions to ask during the interview. Do research about the company and their products.
