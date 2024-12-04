@@ -29,38 +29,88 @@ Your interview preparation for Unity should vary based on your experience and th
 
 Some interview questions that may come up during the process:
 
+### General
+
 1. **Tell me about yourself**
+
+   - Introduce your name > year of experience > your hobby - if align with the job > your current position & company - if employed > your main task in the company > your past experience/product (if any) > your goal in the future
 
 2. Tell me where a time you strongly disagree with someone in your team
 
-. What are your product frameworks you have been using?
+3. What are your product frameworks you have been using?
 
-. Describe one project in your portfolio
+4. Describe one project in your portfolio
 
-6. **How would you optimize code, scene, material, shader to make it compatible with even low end phone?**
+### Unity
 
-   Check out my [Unity Optimization](../../unity-docs/unity-optimizing.md) page for more details
+1. **What components have you used in your project?**
 
-   - You can use **Frame debugger** to check draw call to check where/what being drawing each frame, combine sprite using **Sprite Atlas** to reduce draw call
-   - You can use custom **Tick System** to replace normal **Update** in mono, this will reduce the update call for logic that doesnt need to be updated every frame
-   - you can create a **Benchmark Tool** to test your code to measure its performance, this will help you identify where/what being slow
-   - Using **Hash String** with animator. Animmator functions usually hash the string you pass in the parameter and this will cost some performant, we can reduce by using **Animator.StringToHash** from the start. Same thing with change shader property, we can use **Shader.PropertyToID** to hash the property name and change the shader property with the hash value.
-   - Changing renderer pipeline setting, you can turn off setting like **Depth Texture** to reduce draw call.
-   - For instantiate lots of object, you can use **Object Pooling System** to reuse the object and reduce garbage collection.
-   - Compressing textures, sprites and audios. Change the compression setting to reduce the size of the texture, sprite and audio but make sure the quality is not degraded.
+2. Physics
 
-. Do you know how to use profiler?
+- which collider cost lest
 
-. How do you reduce size of the game without satisfied the quality?
+3. Animator
 
-. Which programming pattern you implement in your project?
+   - blend animation
+   - blend top and bot anim
+   - control animation
 
-. Have you play this \*\*\*\* game? can do deconstruct and explain how this game works?
+4. Light
 
-. Do you know about addressable and assetBundle?
+   - different type of light
+   - light probe, reflection probe
+
+5. Shadow
+
+- if shadow not showing, how would you solve it?
+
+6. Particle System
+
+- scaling
+
+7. Rendering
+
+- layer, camera, ui so on
+- Understand batching and managing UI draw calls
+
+8. Shader
+
+- car crash
+
+9. Audio & Texture compression
+
+- different compression for pc, android, ios
+
+10. **Optimizing**
+
+    Check out my [Unity Optimization](../../unity-docs/unity-optimizing.md) page for more details
+
+    - You can use **Frame debugger** to check draw call to check where/what being drawing each frame, combine sprite using **Sprite Atlas** to reduce draw call
+    - You can use custom **Tick System** to replace normal **Update** in mono, this will reduce the update call for logic that doesnt need to be updated every frame
+    - you can create a **Benchmark Tool** to test your code to measure its performance, this will help you identify where/what being slow
+    - Using **Hash String** with animator. Animmator functions usually hash the string you pass in the parameter and this will cost some performant, we can reduce by using **Animator.StringToHash** from the start. Same thing with change shader property, we can use **Shader.PropertyToID** to hash the property name and change the shader property with the hash value.
+    - Changing renderer pipeline setting, you can turn off setting like **Depth Texture** to reduce draw call.
+    - For instantiate lots of object, you can use **Object Pooling System** to reuse the object and reduce garbage collection.
+    - Compressing textures, sprites and audios. Change the compression setting to reduce the size of the texture, sprite and audio but make sure the quality is not degraded.
+
+11. MonoBehaviour
+
+- different between update, fixed update, late update
+
+12. Couroutine
+
+### C#
+
+1. What is the difference between **struct** and **class** in C#?
+
+2. is array, list big O or small O
 
 ---
 
 ## Questions to Ask
 
 You will need to prepare some questions to ask during the interview. Do research about the company and their products.
+
+Here some general questions that you can ask:
+
+1.

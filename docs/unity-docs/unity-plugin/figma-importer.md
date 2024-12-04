@@ -22,7 +22,7 @@ https://github.com/phamtanlong/figma-to-unity-ugui.git?path=/Assets/Packages/Fig
 
 ### Authorization
 
-1. **Open Figma Importer**
+1. Open Figma Importer
 
    - Open FI panel from **Window > FigmaImporter**.
 
@@ -30,20 +30,37 @@ https://github.com/phamtanlong/figma-to-unity-ugui.git?path=/Assets/Packages/Fig
 
 2. You'll be redirected to a page to allow access. Click **Allow access**.
 
-   ![Figma access](#)
+   ![FI access](img/figma-importer/image2.png)
 
-3. Afterward, a callback page will open. Copy the `ClientCode` and `State` values into the **Figma Editor** window in Unity.
-4. Press the **GetToken** button.
+3. Afterward, a callback page will open. Copy the `ClientCode` and `State` values into the **Figma Editor** window in Unity. Then press the **GetToken** button.
 
-   - If the token appears, the process is successful. If not, repeat the authorization steps.
+   ![FI access 2](img/figma-importer/image3.png)
 
-   ![Token](#)
+4. If the token appears, the process is successful. If not, repeat the authorization steps.
 
 ### Importing Nodes
 
-1. Copy the desired node link from Figma and paste it into the **URL** field in Unity.
-2. Add a **Canvas** to the Canvas field in the importer editor window.
-3. Press the **Get Node Data** button. This will load the node data, including its children.
+1. Create all important setting from **Tool > FigmaImporter > Create All Setting**
+
+   ![FI setting](img/figma-importer/image4.png)
+
+   :::info Font Handling
+
+   If you encounter a font error, add the required font to the `FontLinks.asset` ScriptableObject.
+
+   ![Font Links](img/figma-importer/image8.png)
+
+   :::
+
+2. Copy the desired node link from Figma
+
+   ![Figma copy](img/figma-importer/image5.png)
+
+3. Paste it into the `URL` field in Unity. Add a **Canvas** to the Canvas field in the importer editor window.
+
+   ![FI URL](img/figma-importer/image6.png)
+
+4. Press the **Get Node Data** button. This will load the node data, including its children.
 
 ### Setting Actions for Nodes
 
@@ -65,9 +82,11 @@ Three buttons help manage node actions:
 2. **To Transform:** Sets all nodes to **Transform**. Useful for applying changes to existing objects.
 3. **To SVG:** Requires Unity's Vector Graphics package. Attempts to load all images as SVG.
 
+![Generate Nodes](img/figma-importer/image7.png)
+
 ### Generating Nodes
 
-1. After setting actions for all nodes, press the **Generate Nodes** button. This will generate the node in the referenced Canvas.
+After setting actions for all nodes, press the **Generate Nodes** button. This will generate the node in the referenced Canvas.
 
 #### Applying Changes to Existing Objects
 
@@ -78,7 +97,3 @@ Three buttons help manage node actions:
 
 - You can adjust the scale of objects and raster images using the **Scale** parameter.
 - Maximum allowed scale is **x4** (Figma API limitation).
-
-### Font Handling
-
-- If you encounter a font error, add the required font to the `FontLinks.asset` ScriptableObject.
