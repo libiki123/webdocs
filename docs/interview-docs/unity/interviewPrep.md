@@ -43,67 +43,166 @@ Some interview questions that may come up during the process:
 
 ### Unity
 
-1. **What components have you used in your project?**
+**1. Component Questions**
 
-2. Physics
+#### What is the purpose of the Transform component? Can a GameObject exist without it?
 
-- which collider cost lest
+- No, gameObject cant exist without transform. It automatically added when you create a gameObject
+- Transform is used to position, rotate, scale, and parent gameObject
 
-3. Animator
+#### How do you attach and remove components at runtime using scripts?
 
-   - blend animation
-   - blend top and bot anim
-   - control animation
+- To add, use AddComponent method. To remove, use save reference to component and then use Destroy method
+
+#### Can a GameObject have multiple components of the same type?
+
+- Yes, you can have multiple components of the same type. For example, a gameObject can have a BoxCollider and a SphereCollider component depend on it shape
+
+#### How do Canvas and RectTransform components work in Unity UI?
+
+- All UI elements must be a child of a Canvas to be rendered. Rect
+
+#### What is the EventSystem component?
+
+- The EventSystem is a global Unity component that acts as the backbone for detecting and managing UI events, such as clicks, touches, and keyboard inputs.
+
+<hr style={{ width: '400px', margin: '30px auto', border: '1px solid #edbb93' }} />
+
+**2. Physics Questions**
+
+#### What are the differences between BoxCollider, SphereCollider, and MeshCollider? Which one is best for what?
+
+- **SphereCollider:** Faster and more efficient for simple. It check the distance between the centers of two spheres and comparing it to the sum of their radii
+- **BoxCollider:** Slightly more complex in terms of calculations but still highly efficient. It involves checking whether a point or another collider intersects with the 3D volume of the box
+- **MeshCollider:** More complex than BoxCollider and SphereCollider, but it is more accurate and provides more detailed collision information.
+
+| Feature            | BoxCollider           | SphereCollider           | MeshCollider                |
+| ------------------ | --------------------- | ------------------------ | --------------------------- |
+| **Shape**          | Box/rectangular prism | Sphere                   | Custom mesh                 |
+| **Performance**    | Lightweight           | Lightweight              | Heavier, can be slower      |
+| **Use Case**       | Simple objects, walls | Spherical objects, balls | Complex, detailed models    |
+| **Complexity**     | Simple                | Simple                   | High (based on mesh detail) |
+| **Static/Dynamic** | Works for both        | Works for both           | Preferably static (concave) |
+
+#### Can two GameObjects with only colliders collide with each other? What happens if one of the colliders is set to "Trigger"?
+
+- No, on of the gameObject must have a rigidbody component to collide with other gameObject (with collider)
+- When collider is set to trigger, it will only detect collision but doesn't effect the physics
+
+#### Difference Between `AddForce()` and `Velocity` Property in a Rigidbody
+
+- `AddForce()` Applies a force to the Rigidbody, affecting its velocity over time based on mass and drag. It is used for forces like gravity, thrust, or wind.
+- `Velocity` Directly sets the Rigidbody's speed and direction. It overrides physics simulation and sets the exact movement, which means it does not account for external forces.
+
+#### Difference Between `ForceMode.Force` and `ForceMode.Impulse`?
+
+- `ForceMode.Force` Applies a continuous force over time, making the Rigidbody accelerate gradually. This mode takes the Rigidbody's mass into account.
+- `ForceMode.Impulse` Applies an instant force, changing the Rigidbody's velocity immediately. Ideal for sudden impacts or quick movements.
+
+#### Scenario: A gun shoot at a target > we dont want the bullet to pass through the target > bullet reflect off the target
+
+<hr style={{ width: '400px', margin: '30px auto', border: '1px solid #edbb93' }} />
+
+**3. Animator Questions**
+
+IK - inverse kinematics
+
+#### Scenario: Setting up the animtor for an NPC > we want NPC to transition from idle to walk smoothly > we want NPC to aim while walking > we want to aim at a moving target while walking
+
+<hr style={{ width: '400px', margin: '30px auto', border: '1px solid #edbb93' }} />
 
 4. Light
 
    - different type of light
    - light probe, reflection probe
+   - lgiht mapping
+   - when light is backed how many time it will be rendered
+
+<hr style={{ width: '400px', margin: '30px auto', border: '1px solid #edbb93' }} />
 
 5. Shadow
 
 - if shadow not showing, how would you solve it?
 
-6. Particle System
+<hr style={{ width: '400px', margin: '30px auto', border: '1px solid #edbb93' }} />
 
-- scaling
-
-7. Rendering
+6. Rendering
 
 - layer, camera, ui so on
 - Understand batching and managing UI draw calls
+- static vs dynamic batching
 
-8. Shader
+<hr style={{ width: '400px', margin: '30px auto', border: '1px solid #edbb93' }} />
+
+7. Shader
 
 - car crash
+
+<hr style={{ width: '400px', margin: '30px auto', border: '1px solid #edbb93' }} />
+
+8. Particle System
+
+- scaling
+
+<hr style={{ width: '400px', margin: '30px auto', border: '1px solid #edbb93' }} />
 
 9. Audio & Texture compression
 
 - different compression for pc, android, ios
+- setting & option in texture and audio
+
+<hr style={{ width: '400px', margin: '30px auto', border: '1px solid #edbb93' }} />
 
 10. **Optimizing**
 
     Check out my [Unity Optimization](../../unity-docs/unity-optimizing.md) page for more details
 
-    - You can use **Frame debugger** to check draw call to check where/what being drawing each frame, combine sprite using **Sprite Atlas** to reduce draw call
-    - You can use custom **Tick System** to replace normal **Update** in mono, this will reduce the update call for logic that doesnt need to be updated every frame
-    - you can create a **Benchmark Tool** to test your code to measure its performance, this will help you identify where/what being slow
-    - Using **Hash String** with animator. Animmator functions usually hash the string you pass in the parameter and this will cost some performant, we can reduce by using **Animator.StringToHash** from the start. Same thing with change shader property, we can use **Shader.PropertyToID** to hash the property name and change the shader property with the hash value.
+    - Combine sprite using **Sprite Atlas** to reduce draw call.
+    - You can use custom **Tick System** to replace normal **Update** in mono to reduce update call.
+    - you can create a **Benchmark Tool** to test your code to measure its performance, this will help you identify where/what being slow.
+    - Using **Hash String** with for animator and shader property.
     - Changing renderer pipeline setting, you can turn off setting like **Depth Texture** to reduce draw call.
     - For instantiate lots of object, you can use **Object Pooling System** to reuse the object and reduce garbage collection.
-    - Compressing textures, sprites and audios. Change the compression setting to reduce the size of the texture, sprite and audio but make sure the quality is not degraded.
+    - Compressing textures, sprites and audios.
+    - use LOD
+
+    <hr style={{ width: '400px', margin: '30px auto', border: '1px solid #edbb93' }} />
 
 11. MonoBehaviour
 
 - different between update, fixed update, late update
+- how can we create something that behave like a singleton?
+- abstract vs interface
+
+<hr style={{ width: '400px', margin: '30px auto', border: '1px solid #edbb93' }} />
 
 12. Couroutine
+
+<hr style={{ width: '400px', margin: '30px auto', border: '1px solid #edbb93' }} />
+
+13. Thread
+
+<hr style={{ width: '400px', margin: '30px auto', border: '1px solid #edbb93' }} />
+
+14. ECS
+
+<hr style={{ width: '400px', margin: '30px auto', border: '1px solid #edbb93' }} />
 
 ### C#
 
 1. What is the difference between **struct** and **class** in C#?
 
-2. is array, list big O or small O
+passing class and struct as param
+
+2. is array, list big O or small O - time complexity
+
+3. A\* Algorithm
+
+4. Design pattern
+
+5. archetecture pattern
+
+### IQ
 
 ---
 
