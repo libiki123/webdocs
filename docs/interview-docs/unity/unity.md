@@ -10,24 +10,24 @@ Some Unity interview questions that may come up during the process:
 
 ### Component
 
-**1. What is the purpose of the Transform component? Can a GameObject exist without it?**
+**1.1 What is the purpose of the Transform component? Can a GameObject exist without it?**
 
 - No, gameObject cant exist without transform. It automatically added when you create a gameObject
 - Transform is used to position, rotate, scale, and parent gameObject
 
-**2. How do you attach and remove components at runtime using scripts?**
+**1.2 How do you attach and remove components at runtime using scripts?**
 
 - To add, use AddComponent method. To remove, use save reference to component and then use Destroy method
 
-**3. Can a GameObject have multiple components of the same type?**
+**1.3 Can a GameObject have multiple components of the same type?**
 
 - **Yes**, you can have multiple components of the same type. For example, a gameObject can have a BoxCollider and a SphereCollider component depend on it shape
 
-**4. How do Canvas and RectTransform components work in Unity UI?**
+**1.4 How do Canvas and RectTransform components work in Unity UI?**
 
 - All UI elements must be a child of a Canvas to be rendered. Rect
 
-**5. What is the EventSystem component?**
+**1.5 What is the EventSystem component?**
 
 - The EventSystem is a global Unity component that acts as the backbone for detecting and managing UI events, such as clicks, touches, and keyboard inputs.
 
@@ -35,7 +35,7 @@ Some Unity interview questions that may come up during the process:
 
 ### Physics
 
-**1. What are the differences between BoxCollider, SphereCollider, and MeshCollider? Which one is best for what?**
+**2.1 What are the differences between BoxCollider, SphereCollider, and MeshCollider? Which one is best for what?**
 
 - **SphereCollider:** Faster and more efficient for simple. It check the distance between the centers of two spheres and comparing it to the sum of their radii
 - **BoxCollider:** Slightly more complex in terms of calculations but still highly efficient. It involves checking whether a point or another collider intersects with the 3D volume of the box
@@ -49,22 +49,22 @@ Some Unity interview questions that may come up during the process:
 | **Complexity**     | Simple                | Simple                   | High (based on mesh detail) |
 | **Static/Dynamic** | Works for both        | Works for both           | Preferably static (concave) |
 
-**2. Can two GameObjects with only colliders collide with each other? What happens if one of the colliders is set to "Trigger"?**
+**2.2 Can two GameObjects with only colliders collide with each other? What happens if one of the colliders is set to "Trigger"?**
 
 - No, on of the gameObject must have a rigidbody component to collide with other gameObject (with collider)
 - When collider is set to trigger, it will only detect collision but doesn't effect the physics
 
-**3. Difference Between `AddForce()` and `Velocity` Property in a Rigidbody**
+**2.3 Difference Between `AddForce()` and `Velocity` Property in a Rigidbody**
 
 - `AddForce()` Applies a force to the Rigidbody, affecting its velocity over time based on mass and drag. It is used for forces like gravity, thrust, or wind.
 - `Velocity` Directly sets the Rigidbody's speed and direction. It overrides physics simulation and sets the exact movement, which means it does not account for external forces.
 
-**4. Difference Between `ForceMode.Force` and `ForceMode.Impulse`?**
+**2.4 Difference Between `ForceMode.Force` and `ForceMode.Impulse`?**
 
 - `ForceMode.Force` Applies a continuous force over time, making the Rigidbody accelerate gradually. This mode takes the Rigidbody's mass into account.
 - `ForceMode.Impulse` Applies an instant force, changing the Rigidbody's velocity immediately. Ideal for sudden impacts or quick movements.
 
-**5. Scenario: Setup a gun shooting at a target > The bullet can't pass though target > The Bullet can reflect off the target**
+**2.5 Scenario: Setup a gun shooting at a target > The bullet can't pass though target > The Bullet can reflect off the target**
 
 - **Setup bullet and target:**
 
@@ -81,11 +81,11 @@ Some Unity interview questions that may come up during the process:
 
 ### Animation
 
-**1. What is inverse kinematics (IK)?**
+**3.1 What is inverse kinematics (IK)?**
 
 - IK adjusts parts of a character’s skeleton to match target positions dynamically (e.g., make hands touch a door handle)
 
-**2. Scenario: Setup an NPC > NPC to transition from Idle to walk to Run > NPC to shooting while walking > NPC aim and shott at a moving target while moving**
+**3.2 Scenario: Setup an NPC > NPC to transition from Idle to walk to Run > NPC to shooting while walking > NPC aim and shott at a moving target while moving**
 
 - **Setup walk and Run animations on the NPC:**
 
@@ -116,11 +116,11 @@ Some Unity interview questions that may come up during the process:
 
 ### Lighting & Shadow
 
-**1. What is global illumination (GI), and how does Unity implement it?**
+**4.1 What is global illumination (GI), and how does Unity implement it?**
 
 - Global Illumination (GI) simulates how light bounces off surfaces and indirectly illuminates the scene. Unity implements GI using Precomputed Realtime GI (calculated dynamically) and Baked GI (calculated offline and stored in lightmaps).
 
-**2. What are light probes and reflection probes, and how are they used in Unity?**
+**4.2 What are light probes and reflection probes, and how are they used in Unity?**
 
 - **Light probes:**
 
@@ -131,34 +131,36 @@ Some Unity interview questions that may come up during the process:
   - Reflection probes capture a 360-degree snapshot of their environment and apply this as reflections to objects with reflective materials.
   - Use case: Reflection probes are essential for adding realistic reflections to glossy surfaces like water, mirrors, or polished floors.
 
-**3. What is light mapping in Unity? How many time light get render after baking?**
+**4.3 What is light mapping in Unity? How many time light get render after baking?**
 
 - Light mapping is the process of precomputing lighting and **baking** it into textures, known as lightmaps, to reduce runtime lighting calculations andf improve performance. However, lightmaps increase memory usage and require preprocessing.
 - Once baked, the lighting information is rendered once during the baking process and stored in the lightmap.
 
-**4. What is the difference between forward rendering and deferred rendering? How do they affect lighting calculations?**
+**4.4 What is the difference between forward rendering and deferred rendering? How do they affect lighting calculations?**
 
 - Forward Rendering: Calculates lighting per object. Best for scenes with fewer lights.
 - Deferred Rendering: Calculates lighting per pixel. Best for scenes with many lights. Supports advanced effects like dynamic shadows and multiple light sources but is more memory-intensive.
 
-**5. What is ambient lighting, and how is it configured in Unity?**
+**4.5 What is ambient lighting, and how is it configured in Unity?**
 
 - Ambient lighting provides general, indirect light to all objects in a scene, simulating light scattering from the environment. It’s configured in the Lighting Settings under the Environment Lighting section
 
-**6. How do you troubleshoot light bleeding or artifacts in a Unity scene?**
+**4.6 How do you troubleshoot light bleeding or artifacts in a Unity scene?**
 
 - Increase lightmap resolution.
-- Adjust UV unwrap settings for objects.
+- Ensure proper UV layout to prevent lightmap seams.
 - Use shadow bias to prevent overlapping light calculations.
 - Reduce the number of indirect samples in light settings.
 
-**7. How does Unity handle shadows, and what are the different shadow settings available?**
+**4.7 How does Unity handle shadows, and what are the different shadow settings available?**
 
-- Unity supports hard shadows, soft shadows, and contact shadows.
-- Shadow settings include Distance, Resolution, Bias, and Cascades.
-- Unity adjusts shadow quality based on the rendering pipeline and Quality Settings.
+- Unity supports **hard, soft, and contact shadows**. Key shadow settings include:
+  - **Distance:** Controls the shadow draw distance.
+  - **Resolution:** Sets shadow map resolution.
+  - **Bias:** Adjusts shadow positioning to avoid artifacts.
+  - **Cascades:** Uses multiple shadow maps for improved quality at different distances, especially in large scenes.
 
-**8. Troubleshooting Shadows. If a shadow is not showing in Unity, how would you solve it?**
+**4.8 Troubleshooting Shadows. If a shadow is not showing in Unity, how would you solve it?**
 
 - **Check Light Settings:** Ensure the light has shadows enabled (Hard or Soft).
 - **Shadow Distance:** Verify the shadow distance in the Quality Settings (Edit > Project Settings > Quality).
@@ -170,13 +172,13 @@ Some Unity interview questions that may come up during the process:
 
 ### Rendering and Camera
 
-**1. What are Occlusion Culling, Frustum Culling, and LOD (Level of Detail) in Unity?**
+**5.1 What are Occlusion Culling, Frustum Culling, and LOD (Level of Detail) in Unity?**
 
 - **Occlusion Culling** is use to optimize rendering by not drawing objects hidden behind others. It works by precomputing visibility data during baking in the Occlusion Culling window.
 - **Frustum culling** is a technique where objects outside the camera's view are not rendered. Unity implements it automatically for objects outside the camera’s frustum (view cone).
 - **LOD (Level of Detail):** allows objects to switch to lower-detail models based on their distance from the camera.
 
-**2. Static vs Dynamic Batching**
+**5.2 Static vs Dynamic Batching**
 
 - **Static Batching**
   - Combines non-moving objects into a single batch.
@@ -188,15 +190,15 @@ Some Unity interview questions that may come up during the process:
   - Limited to objects with < 300 vertices and the same material.
   - Saves draw calls but increases CPU overhead.
 
-**3. What is GPU instancing, and how does it differ from static batching?**
+**5.3 What is GPU instancing, and how does it differ from static batching?**
 
 - GPU instancing allows rendering multiple instances of the same mesh/material combination with one draw call. Static batching combines static objects into a single mesh to reduce draw calls but is not dynamic.
 
-**4. How would you create a split-screen or multi-camera setup in Unity?**
+**5.4 How would you create a split-screen or multi-camera setup in Unity?**
 
 - You can create multiple cameras and set their Viewport Rect to define the screen space they occupy. Adjust the position and size of each viewport for split-screen functionality.
 
-**5. Camera Rendering Order in 2D vs 3D**
+**5.5 Camera Rendering Order in 2D vs 3D**
 
 - **2D Rendering Order**
 
@@ -212,7 +214,7 @@ Some Unity interview questions that may come up during the process:
 
 ### Particle System
 
-**1. How do you scale a particle system in Unity? What if transform scaling not work?**
+**6.1 How do you scale a particle system in Unity? What if transform scaling not work?**
 
 - Easiest way to scale a particle system is to adjust the Transform scale of the particle system GameObject.
 - You can also adjust the scale within the Renderer module if you need specific visual adjustments
@@ -222,16 +224,16 @@ Some Unity interview questions that may come up during the process:
 
 ### Shader
 
-**1. Differences Between Vertex and Fragment Shaders**
+**7.1 Differences Between Vertex and Fragment Shaders**
 
 - **Vertex Shaders:** Process vertices, transform positions, and pass data to the fragment shader.
 - **Fragment Shaders:** Determine the final color of each pixel, handling texture, lighting, and effects.
 
-**2. Purpose of Normal Maps**
+**7.2 Purpose of Normal Maps**
 
 - Normal maps simulate detailed surface features without adding geometry by altering how light interacts with a surface, making it appear bumpy or detailed.
 
-**3. Senario: Dropping a Boulder on a Car and Having the Car Dent Based on the Impact**
+**7.3 Senario: Dropping a Boulder on a Car and Having the Car Dent Based on the Impact**
 
 - **Mesh Deformation**
 
@@ -245,7 +247,7 @@ Some Unity interview questions that may come up during the process:
 
 ### Optimization
 
-**1. Common Optimization Techniques**
+**8.1 Common Optimization Techniques**
 
 Check out my [Unity Optimization](../../unity-docs/unity-optimizing.md) page for more details
 
@@ -258,7 +260,7 @@ Check out my [Unity Optimization](../../unity-docs/unity-optimizing.md) page for
 - **Compressing** textures, sprites and audios.
 - Use **Occlusion Culling, Frustum Culling, and LOD** to reduce draw call by not rendering unseen objects.
 
-**2. Texture Compression**
+**8.2 Texture Compression**
 
 - **Important Settings**
 
@@ -293,7 +295,7 @@ Check out my [Unity Optimization](../../unity-docs/unity-optimizing.md) page for
   - Choose formats that minimize artifacts (e.g., ASTC for high quality on newer devices).
   - Test different formats and settings to balance quality and memory usage.
 
-**3. Audio Compression**
+**8.3 Audio Compression**
 
 - **Important Settings**
 
@@ -327,7 +329,7 @@ Check out my [Unity Optimization](../../unity-docs/unity-optimizing.md) page for
 
 ### MonoBehaviour
 
-**1. Difference between Update, FixedUpdate, and LateUpdate**
+**9.1 Difference between Update, FixedUpdate, and LateUpdate**
 
 - **Update:** Called once per frame. Used for regular tasks like input checks or movement.
 
@@ -335,23 +337,22 @@ Check out my [Unity Optimization](../../unity-docs/unity-optimizing.md) page for
 
 - **LateUpdate:** Called after all Update calls. Used for tasks that must execute last, like camera positioning.
 
-**2. Scenario: If the game is running at 60 FPS but lagging, will FixedUpdate still run at the same interval? What will happen?**
+**9.2 Scenario: If the game is running at 60 FPS but lagging, how will FixedUpdate behave?**
 
-- Yes, if the game lags, FixedUpdate may be called multiple times in a single frame to catch up with the physics calculations.
+- FixedUpdate in Unity is tied to the physics simulation and runs at a fixed interval, independent of the frame rate.
 
 - **Example Scenario**
 
   - Game target: 60 FPS (frame time = 16.67ms).
   - FixedUpdate interval: 20ms (50 Hz) | 0.02 seconds (50 times per second).
-  - If fps drop to 25 (frame time drop to 40ms),
+  - If fps drop to 25, frame time will drop to 40ms,
     - Unity will call FixedUpdate twice during that frame to catch up.
 
-- **Potential Consequences**
-  - Increased CPU Load: Multiple FixedUpdate calls in one frame may worsen performance.
-  - Physics Stays Accurate: Ensures consistent physics simulation despite low frame rates.
-  - Gameplay Lag Perception: Visual elements may appear delayed or stuttery, as rendering remains tied to the frame rate.
+- **Summary**
 
-**3. what are Coroutines in MonoBehaviour, and how do they compare to threads?**
+  - FixedUpdate ensures stable physics even during performance drops, but excessive calls in one frame, this can impact overall game smoothness.
+
+**9.3 what are Coroutines in MonoBehaviour, and how do they compare to threads?**
 
 | Feature   | Coroutine                       | Thread                            |
 | --------- | ------------------------------- | --------------------------------- |
@@ -380,7 +381,7 @@ Check out my [Unity Optimization](../../unity-docs/unity-optimizing.md) page for
 
 ### System Design
 
-**1. How do you set up a simple multiplayer game?**
+**10.1 How do you set up a simple multiplayer game?**
 
 - Choose Networking Tool: Use Unity Netcode, Photon, or Mirror.
 - Setup Network Manager: Add a NetworkManager and configure it for hosting and joining games.

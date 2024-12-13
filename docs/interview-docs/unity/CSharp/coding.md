@@ -54,12 +54,7 @@ Common coding questions that may come up during the process:
         }
 
        Console.WriteLine("Reversed Array: [" + string.Join(", ", array) + "]");
-    }
-
-    /*Output
-    Reversed String: modnar si siht
-    Reversed Array: [9, 8, 7, 6, 5, 4, 3, 2, 1]
-    */`}
+    }`}
     </CodeBlock>
 
   </TabItem>
@@ -83,28 +78,22 @@ Common coding questions that may come up during the process:
 
   <TabItem value="answer" label="Answer">
     <CodeBlock language="cs" showLineNumbers={true}>
-    {`// The for loop compares characters from the start and end, moving inward. If all match, it’s a palindrome; otherwise, it’s not.
-
-    private static bool IsPalindrome(string str)
+    {`  private static bool IsPalindrome(string str)
     {
-        // Remove spaces and convert to lowercase for case-insensitive comparison
-        str = str.Replace(" ", "").ToLower();
+      // Remove spaces and convert to lowercase for case-insensitive comparison
+      str = str.Replace(" ", "").ToLower();
+      
+      // The for loop compares characters from the start and end, moving inward. If all match, it’s a palindrome; otherwise, it’s not.
+      for (int start = 0, end = str.Length - 1; start < end; start++, end--)
+      {
+          if (str[start] != str[end])
+          {
+              return false; //Not Palindrome
+          }
+      }
 
-        for (int start = 0, end = str.Length - 1; start < end; start++, end--)
-        {
-            if (str[start] != str[end])
-            {
-                return false; //Not Palindrome
-            }
-        }
-
-        return true; //Palindrome
-    }
-
-    /*Output
-    Input: madam
-    Output: Palindrome
-    */`}
+      return true; //Palindrome
+    }`}
     </CodeBlock>
 
   </TabItem>
@@ -715,4 +704,121 @@ Common coding questions that may come up during the process:
     </CodeBlock>
 
   </TabItem>
+</Tabs>
+
+---
+
+### Split Array into Pairs with Odd Sums
+
+<Tabs>
+<TabItem value="test" label="Test" default>
+
+You are given an array `A` of `N` integers, where `N` is even. Your task is to determine if it is possible to split the array into `N/2` pairs such that:
+
+1. **Every number in the array is used exactly once.**
+2. **The sum of the two numbers in each pair is odd.**
+
+#### Input Constraints
+
+- `N` is an integer in the range: `[2, 100,000]`.
+- Each element in the array `A` is an integer in the range: `[-1,000,000,000, 1,000,000,000]`.
+
+#### Examples
+
+| **Input**                  | **Output** | **Explanation**                                                                                                                         |
+| -------------------------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `A = [2, 7, 4, 6, 3, 1]`   | `true`     | Possible pairs are `(2, 7)`, `(4, 3)`, and `(6, 1)`, all of which have odd sums.                                                        |
+| `A = [-1, 1]`              | `false`    | The only possible pair is `(-1, 1)`, which has an even sum `-1 + 1 = 0`.                                                                |
+| `A = [2, -1]`              | `true`     | The pair `(2, -1)` has an odd sum `2 + (-1) = 1`.                                                                                       |
+| `A = [1, 2, 4, 3]`         | `true`     | Possible pairs are `(1, 2)` and `(4, 3)`, both with odd sums.                                                                           |
+| `A = [-1, -3, 4, 7, 7, 7]` | `false`    | There are 4 odd numbers (`-1, -3, 7, 7`) and only 2 even numbers (`4`). It's not possible to pair every odd number with an even number. |
+
+</TabItem>
+
+<TabItem value="answer" label="Answer">
+
+#### Step 1: Understand the Odd Sum Rule
+
+- A pair will have an **odd sum** if one number is **odd** and the other is **even**.
+- Examples:
+
+  - `3 + 2 = 5` (Odd sum ✅)
+  - `1 + 4 = 5` (Odd sum ✅)
+  - `2 + 4 = 6` (Even sum ❌)
+  - `3 + 5 = 8` (Even sum ❌)
+
+  - `N` is guaranteed to be even, so you can always form `N/2` pairs.
+
+- **Key Formula**:
+  - oddCount = evenCount = 𝑁/2
+
+---
+
+#### Step 2: Count Odd and Even Numbers
+
+- Traverse through the array and count:
+  - The number of **odd numbers** (let’s call this `oddCount`).
+  - The number of **even numbers** (let’s call this `evenCount`).
+
+---
+
+#### Step 3: Implement the Solution Efficiently
+
+- Ensure the solution runs in \( O(N) \) time complexity:
+  - Traverse the array once to count odd and even numbers.
+- Ensure the solution uses \( O(1) \) space complexity:
+  - Use only a few variables (`oddCount`, `evenCount`) to store the counts.
+
+---
+
+#### Step 4: Edge Cases to Consider
+
+1. **Smallest Array**:
+
+   - Input: `A = [1, 2]`
+   - Output: `true` (1 odd and 1 even, so they can form a pair with an odd sum).
+
+2. **Unbalanced Odd and Even Counts**:
+
+   - Input: `A = [1, 3, 5, 7]`
+   - Output: `false` (all odd, so no even numbers to pair with).
+
+3. **Negative Numbers**:
+
+   - Input: `A = [-2, -3, -4, -5]`
+   - Output: `true` (`-2 + -3 = -5`, `-4 + -5 = -9`).
+
+4. **Large Input**:
+   - Ensure the solution handles arrays with up to \( N = 100,000 \) efficiently.
+
+</TabItem>
+
+<TabItem value="code" label="Code">
+<CodeBlock language="cs" showLineNumbers={true}>
+{`public bool solution(int[] A)
+{
+    int oddCount = 0;
+    int evenCount = 0;
+    int N = A.Length;
+    int half = N / 2;
+
+    // Count odd and even numbers
+    foreach (int num in A)
+    {
+        if (num % 2 == 0) // Even number
+            evenCount++;
+        else // Odd number
+            oddCount++;
+    }
+
+    // Optimize: Early exit if counts are already imbalanced
+    if (oddCount > half || evenCount > half)
+        return false;
+
+    // Check if odd and even counts are equal
+    return oddCount == evenCount;
+
+} `}
+</CodeBlock>
+</TabItem>
 </Tabs>
