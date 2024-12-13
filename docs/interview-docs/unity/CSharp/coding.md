@@ -324,6 +324,55 @@ Common coding questions that may come up during the process:
 
 ---
 
+### Find missing number in an array
+
+<Tabs>
+<TabItem value="test" label="Test" default>
+  Giving an array of integers, find the missing number in the array.
+
+- **Example:** array[1-100], not sorted and missing number 34.
+
+  - **Input:** [1-100] | **Output:** 34
+
+- **Hint**: The formula is: `Sum = (n * (n + 1)) / 2`
+
+**Link:** [Live Code Test](https://www.programiz.com/online-compiler/8wQ0YK6JMTVeB)
+
+</TabItem>
+
+  <TabItem value="answer" label="Answer">
+    <CodeBlock language="cs" showLineNumbers={true}>
+    {`  private static void FindMissingNumber(int[] arr, int n)
+    {
+      for (int start = 0; start < input.Length; start++) // Starting index
+      {
+        int missingNumber = int.MinValue;
+
+        // Option 1: Use math
+        int expectedSum = n * (n + 1) / 2; // Calculate the expected sum of the first n natural numbers
+        int actualSum = arr.Sum();  // Calculate the actual sum of the array
+        missingNumber = expectedSum - actualSum;         // The missing number is the difference
+
+         // Option 2: Use hashset
+        HashSet<int> allNumbers = new HashSet<int>(Enumerable.Range(1, n)); // Create a HashSet with all numbers from 1 to n
+        foreach (int num in arr) // Remove all numbers that are present in the array
+        {
+            allNumbers.Remove(num);
+        }
+        missingNumber = allNumbers.First(); // The remaining number in the HashSet is the missing number
+
+        Console.WriteLine("The missing number is: " + missingNumber);
+
+      }
+    }`}
+    </CodeBlock>
+
+  </TabItem>
+
+</Tabs>
+
+---
+
 ### Perform Left & Right circular rotation of an array
 
 <Tabs>
@@ -819,6 +868,7 @@ You are given an array `A` of `N` integers, where `N` is even. Your task is to d
     return oddCount == evenCount;
 
 } `}
+
 </CodeBlock>
 </TabItem>
 </Tabs>

@@ -43,32 +43,42 @@ import CodeBlock from '@theme/CodeBlock';
 | **Use Case**      | Short-lived data like local variables.         | Long-lived or dynamic data like objects.           |
 | **Common Issues** | StackOverflow (deep recursion).                | Fragmentation, memory leaks.                       |
 
-**1.6 What is garbage collection in C#?**
+**1.6 Explain SOLID Principles**
+
+| **Principle**                                 | **Description**                                                                                                                                                                  |
+| --------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **S - Single Responsibility Principle (SRP)** | A class should have only one reason to change, meaning it should have only one job or responsibility.                                                                            |
+| **O - Open/Closed Principle (OCP)**           | Software entities (classes, modules, functions) should be open for extension, but closed for modification.                                                                       |
+| **L - Liskov Substitution Principle (LSP)**   | Child class should be able to do the same thing as its parent class.                                                                                                             |
+| **I - Interface Segregation Principle (ISP)** | A client should not be forced to depend on interfaces it doesn't use. It's better to have smaller, more specific interfaces.                                                     |
+| **D - Dependency Inversion Principle (DIP)**  | High-level modules should not depend on low-level modules. Both should depend on abstractions. Abstractions should not depend on details; details should depend on abstractions. |
+
+**1.7 What is garbage collection in C#?**
 
 - Garbage collection is an automatic process that reclaims memory used by objects no longer in use, it identifies and frees memory from unreachable objects, preventing memory leaks.
   - Managed heap: Objects are stored here.
   - Generations: Objects are categorized into Generation 0, 1, and 2 for optimized collection.
   - Finalization: Objects can clean up resources before collection, but it's better to use IDisposable.
 
-**1.7 What is a partial class in C#?**
+**1.8 What is a partial class in C#?**
 
 - A class split into multiple files for better organization. All parts are combined into one class during compilation.
 
-**1.8 What is a pointer type in C#?**
+**1.9 What is a pointer type in C#?**
 
 - A pointer holds the memory address of a variable. It is used in **unsafe** code for scenarios like direct memory manipulation.
 
-**1.9 What is the difference between abstract classes and interfaces?**
+**1.10 What is the difference between abstract classes and interfaces?**
 
 - **Abstract classes**: Can have method implementations and fields. Used when objects share common behavior.
 - **Interfaces**: Only define method signatures. Useful for defining capabilities without shared implementation.
 
-**1.10 What is the difference between `is` and `as` in C#?**
+**1.11 What is the difference between `is` and `as` in C#?**
 
 - `is`: Checks if an object is of a specific type. Returns a boolean.
 - `as`: Tries to cast an object to a specific type. Returns `null` if it fails.
 
-**1.11 What is the purpose of lambda expressions in C#?**
+**1.12 What is the purpose of lambda expressions in C#?**
 
 - A concise way to write anonymous methods. Commonly used in LINQ and delegates.
 
@@ -78,7 +88,7 @@ import CodeBlock from '@theme/CodeBlock';
     nums.Where(n => n > 10);
     ```
 
-**1.12 What are the common design patterns in C#?**
+**1.13 What are the common design patterns in C#?**
 
 | **Pattern**    | **Description**                                                                                           |
 | -------------- | --------------------------------------------------------------------------------------------------------- |
@@ -89,12 +99,12 @@ import CodeBlock from '@theme/CodeBlock';
 | **Strategy**   | Defines a family of algorithms, encapsulates each one, and allows them to be interchangeable at runtime.  |
 | **Repository** | Encapsulates data access logic, separating it from business logic for easier maintenance and testing.     |
 
-**1.13 What is a Thread, and what is a Task in C#? How do they differ?**
+**1.14 What is a Thread, and what is a Task in C#? How do they differ?**
 
 - **Thread**: A basic unit of execution managed by the OS.
 - **Task**: A higher-level abstraction for asynchronous code, easier to use and manage.
 
-**1.14 What is the difference between an array and an ArrayList? When should you use an ArrayList over an array?**
+**1.15 What is the difference between an array and an ArrayList? When should you use an ArrayList over an array?**
 
 - **Array**: Fixed size, stores elements of the same type.
 - **ArrayList**: Dynamic size, can store elements of different types but lacks type safety.
@@ -585,6 +595,8 @@ A* is a smart pathfinding algorithm used to find the shortest route between two 
 
 </TabItem>
 </Tabs>
+
+---
 
 ### Greedy Algorithms
 
