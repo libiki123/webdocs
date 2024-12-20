@@ -22,16 +22,11 @@ import CodeBlock from '@theme/CodeBlock';
 - **Struct**: A value type stored in memory directly. Ideal for lightweight objects like coordinates. Does not support inheritance and **CANNOT** be null.
 - **Class**: A reference type stored in heap memory. Suitable for complex objects and supports inheritance, polymorphism and can be null.
 
-**1.3 What is the difference between passing a class and a struct as a parameter?**
+**1.3 What is an enum in C#?**
 
-- **Class**: Passed by reference, meaning changes affect the original object.
-- **Struct**: Passed by value, meaning changes do not affect the original data.
+- **Enum** is a A value type that defines a set of named values, which are usually constants.
 
-**1.4 What is an enum in C#?**
-
-- A value type used to represent a set of named constants. **Enum** is a special data type in programming that defines a set of named values, which are usually constants.
-
-**1.5 What is the difference between heap and stack memory?**
+**1.4 What is the difference between heap and stack memory?**
 
 | **Aspect**        | **Stack**                                      | **Heap**                                           |
 | ----------------- | ---------------------------------------------- | -------------------------------------------------- |
@@ -43,7 +38,7 @@ import CodeBlock from '@theme/CodeBlock';
 | **Use Case**      | Short-lived data like local variables.         | Long-lived or dynamic data like objects.           |
 | **Common Issues** | StackOverflow (deep recursion).                | Fragmentation, memory leaks.                       |
 
-**1.6 Explain SOLID Principles**
+**1.5 Explain SOLID Principles**
 
 | **Principle**                                 | **Description**                                                                                                                                                                  |
 | --------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -53,42 +48,32 @@ import CodeBlock from '@theme/CodeBlock';
 | **I - Interface Segregation Principle (ISP)** | A client should not be forced to depend on interfaces it doesn't use. It's better to have smaller, more specific interfaces.                                                     |
 | **D - Dependency Inversion Principle (DIP)**  | High-level modules should not depend on low-level modules. Both should depend on abstractions. Abstractions should not depend on details; details should depend on abstractions. |
 
-**1.7 What is garbage collection in C#?**
+**1.6 What is garbage collection in C#?**
 
-- Garbage collection is an automatic process that reclaims memory used by objects no longer in use, it identifies and frees memory from unreachable objects, preventing memory leaks.
-  - Managed heap: Objects are stored here.
-  - Generations: Objects are categorized into Generation 0, 1, and 2 for optimized collection.
-  - Finalization: Objects can clean up resources before collection, but it's better to use IDisposable.
+- Garbage collection automatically frees memory by removing objects no longer in use, preventing memory leaks.
+  - Objects are stored in the managed heap.
+  - They are categorized into Generations (0, 1, 2) for efficient cleanup.
+  - Use IDisposable for resource cleanup instead of relying on finalization
 
-**1.8 What is a partial class in C#?**
+**1.7 What is a partial class in C#?**
 
 - A class split into multiple files for better organization. All parts are combined into one class during compilation.
 
-**1.9 What is a pointer type in C#?**
+**1.8 What is a pointer type in C#?**
 
 - A pointer holds the memory address of a variable. It is used in **unsafe** code for scenarios like direct memory manipulation.
 
-**1.10 What is the difference between abstract classes and interfaces?**
+**1.9 What is the difference between abstract classes and interfaces?**
 
 - **Abstract classes**: Can have method implementations and fields. Used when objects share common behavior.
 - **Interfaces**: Only define method signatures. Useful for defining capabilities without shared implementation.
 
-**1.11 What is the difference between `is` and `as` in C#?**
+**1.10 What is the difference between `is` and `as` in C#?**
 
 - `is`: Checks if an object is of a specific type. Returns a boolean.
 - `as`: Tries to cast an object to a specific type. Returns `null` if it fails.
 
-**1.12 What is the purpose of lambda expressions in C#?**
-
-- A concise way to write anonymous methods. Commonly used in LINQ and delegates.
-
-  - Example:
-
-    ```csharp
-    nums.Where(n => n > 10);
-    ```
-
-**1.13 What are the common design patterns in C#?**
+**1.11 What are the common design patterns in C#?**
 
 | **Pattern**    | **Description**                                                                                           |
 | -------------- | --------------------------------------------------------------------------------------------------------- |
@@ -99,12 +84,7 @@ import CodeBlock from '@theme/CodeBlock';
 | **Strategy**   | Defines a family of algorithms, encapsulates each one, and allows them to be interchangeable at runtime.  |
 | **Repository** | Encapsulates data access logic, separating it from business logic for easier maintenance and testing.     |
 
-**1.14 What is a Thread, and what is a Task in C#? How do they differ?**
-
-- **Thread**: A basic unit of execution managed by the OS.
-- **Task**: A higher-level abstraction for asynchronous code, easier to use and manage.
-
-**1.15 What is the difference between an array and an ArrayList? When should you use an ArrayList over an array?**
+**1.12 What is the difference between an array and an ArrayList? When should you use an ArrayList over an array?**
 
 - **Array**: Fixed size, stores elements of the same type.
 - **ArrayList**: Dynamic size, can store elements of different types but lacks type safety.
@@ -118,22 +98,18 @@ import CodeBlock from '@theme/CodeBlock';
 
 - Simplifies asynchronous programming by letting code run without blocking the main thread.
 
-**2.2 What is the purpose of extension methods in C#?**
-
-- Adds new functionality to existing types without modifying them.
-
-**2.3 How does dependency injection work in C#?**
+**2.2 How does dependency injection work in C#?**
 
 - A design pattern to provide dependencies to objects, improving modularity and testing.
 
-**2.4 Explain LINQ and its significance in C#.**
+**2.3 Explain LINQ and its significance in C#.**
 
 - LINQ (Language Integrated Query) allows querying data using SQL-like syntax. Improves code readability.
 
-**2.5 What is the dynamic type in C#, and how does it differ from var?**
+**2.4 What is the dynamic type in C#, and how does it differ from var?**
 
 - **Dynamic**: Runtime type resolution.
-- **Var**: Compile-time type inference.\
+- **Var**: Compile-time type inference.
 
 ---
 

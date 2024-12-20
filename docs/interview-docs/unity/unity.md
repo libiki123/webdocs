@@ -25,7 +25,8 @@ Some Unity interview questions that may come up during the process:
 
 **1.4 How do Canvas and RectTransform components work in Unity UI?**
 
-- All UI elements must be a child of a Canvas to be rendered. Rect
+- All UI elements must be a child of a Canvas to be rendered, it determines how UI elements are drawn and can render in Screen Space/World Space.
+- RectTransform is a Transform for UI elements, controlling position, size, and anchors. It allows flexible layouts that adapt to different screen sizes.
 
 **1.5 What is the EventSystem component?**
 
@@ -40,14 +41,6 @@ Some Unity interview questions that may come up during the process:
 - **SphereCollider:** Faster and more efficient for simple. It check the distance between the centers of two spheres and comparing it to the sum of their radii
 - **BoxCollider:** Slightly more complex in terms of calculations but still highly efficient. It involves checking whether a point or another collider intersects with the 3D volume of the box
 - **MeshCollider:** More complex than BoxCollider and SphereCollider, but it is more accurate and provides more detailed collision information.
-
-| Feature            | BoxCollider           | SphereCollider           | MeshCollider                |
-| ------------------ | --------------------- | ------------------------ | --------------------------- |
-| **Shape**          | Box/rectangular prism | Sphere                   | Custom mesh                 |
-| **Performance**    | Lightweight           | Lightweight              | Heavier, can be slower      |
-| **Use Case**       | Simple objects, walls | Spherical objects, balls | Complex, detailed models    |
-| **Complexity**     | Simple                | Simple                   | High (based on mesh detail) |
-| **Static/Dynamic** | Works for both        | Works for both           | Preferably static (concave) |
 
 **2.2 Can two GameObjects with only colliders collide with each other? What happens if one of the colliders is set to "Trigger"?**
 
@@ -190,9 +183,9 @@ Some Unity interview questions that may come up during the process:
   - Limited to objects with < 300 vertices and the same material.
   - Saves draw calls but increases CPU overhead.
 
-**5.3 What is GPU instancing, and how does it differ from static batching?**
+**5.3 What is GPU instancing?**
 
-- GPU instancing allows rendering multiple instances of the same mesh/material combination with one draw call. Static batching combines static objects into a single mesh to reduce draw calls but is not dynamic.
+- GPU instancing allows rendering multiple instances of the same mesh/material combination with one draw call.
 
 **5.4 How would you create a split-screen or multi-camera setup in Unity?**
 

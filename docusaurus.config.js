@@ -85,6 +85,13 @@ const config = {
             type: "docSidebar",
             sidebarId: "unitySidebar",
           },
+          {
+            label: "Trade Bot",
+            to: "/docs/tradeBot-docs/intro",
+            type: "docSidebar",
+            sidebarId: "tradeBotSidebar",
+            position: "right",
+          },
 
           // {
           //   type: "dropdown",
