@@ -20,9 +20,10 @@ sidebar_position: 1
 ### Create Telegram Bot (Optional)
 
 - Go to telegram and find BotFather
-  ![BotFather](img/image2.png)
 - Create a bot and get the token
+
   ![BotFather](img/image3.png)
+
 - Get chat id of the bot
   - Type something in the chat
   - Using this link `https://api.telegram.org/bot[**Put bot TOKEN here**]/getUpdates` to get the chat id
@@ -84,8 +85,6 @@ If setup go wrong or you want a fresh start you can delete the bot and start ove
 
 ## Config FreqTrade
 
-# Update
-
 ### Update Config
 
 When changing the bot config in the `config.json`, update Telegram bot using `/reload_config` command.
@@ -115,9 +114,13 @@ When changing the bot config in the `config.json`, update Telegram bot using `/r
 
 - Using `localhost:8080` we can access the bot's web interface.
 - We then login using the info from `config.json`
-  :::note
+  :::info
 
-  If you are using multiple bots, you will need to login to each bot with its config.json.
+  If you are using **multiple bots**, you will need to login to each bot with its `config.json`, also change the port base on the `docker-compose.yml`.
 
   :::
   ![login](img/image9.png)
+
+  ***
+
+  ## Run Live Trade

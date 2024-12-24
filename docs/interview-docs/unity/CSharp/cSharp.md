@@ -75,11 +75,11 @@ import CodeBlock from '@theme/CodeBlock';
 
 **1.11 What are the common design patterns in C#?**
 
-| **Pattern**    | **Description**                                                                                           |
-| -------------- | --------------------------------------------------------------------------------------------------------- |
-| **Singleton**  | Ensures a class has only one instance and provides a global point of access.                              |
-| **Factory**    | Creates objects without specifying the exact class. It decouples creation logic from client code.         |
-| **Observer**   | Establishes a one-to-many dependency for notifying dependent objects when the state of an object changes. |
+| **Pattern**    | **Description**                                                                                           | **Disadvantages**                                                                                               |
+| -------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| **Singleton**  | Ensures a class has only one instance and provides a global point of access.                              | Can lead to tightly coupled code, makes testing harder, and violates the Single Responsibility Principle.       |
+| **Factory**    | Creates objects without specifying the exact class. It decouples creation logic from client code.         | Adds complexity and can make debugging more challenging due to hidden creation logic.                           |
+| **Observer**   | Establishes a one-to-many dependency for notifying dependent objects when the state of an object changes. | Can lead to memory leaks if observers are not properly deregistered and makes debugging event chains difficult. |
 | **Decorator**  | Adds responsibilities to an object dynamically, providing a flexible alternative to subclassing.          |
 | **Strategy**   | Defines a family of algorithms, encapsulates each one, and allows them to be interchangeable at runtime.  |
 | **Repository** | Encapsulates data access logic, separating it from business logic for easier maintenance and testing.     |
