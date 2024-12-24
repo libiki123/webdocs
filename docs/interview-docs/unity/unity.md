@@ -70,6 +70,61 @@ Some Unity interview questions that may come up during the process:
   - Use `collision.contacts` and `Vector3.Reflect(transform.forward, contact.normal)` to calculate the reflected direction.
   - Apply a Physics Material to the bullet or target to control the friction and bounciness.
 
+**2.6 Senario: You have two flat boxes and you want to "fold" one box onto the other so that it sits on top of it, with the folding motion depending on their current positions (not aligned to any specific axis).**
+
+- **Find the Folding Axis**
+
+  - Calculate the direction between the two boxes using their positions.
+  - Use `Vector3.Cross` to find the axis perpendicular to this direction
+
+- **Rotate Around the Axis**
+
+  - Use `Quaternion.AngleAxis` or `Transform.RotateAround` to rotate the box around the calculated axis to simulate folding.
+
+  ```cs
+    Vector3 direction = boxB.position - boxA.position;
+    Vector3 foldAxis = Vector3.Cross(Vector3.up, direction).normalized;
+
+    boxA.RotateAround(boxA.position, foldAxis, foldSpeed * Time.deltaTime);
+  ```
+
+  **2.7 Senario: How can I make a coin move in a curved path to the gold amount UI in Unity?**
+
+- **Using Coroutine**
+
+  - Calculate a midpoint to create the curve.
+  - Move the coin along the curve using the Bezier formula.
+
+```cs
+  Vector3 controlPoint = (startPoint.position + endPoint.position) / 2 + Vector3.up * 100f;
+  while (timer <= animationDuration)
+  {
+      timer += Time.deltaTime;
+      float t = timer / animationDuration;
+      // Bezier curve formula
+      Vector3 position = Mathf.Pow(1 - t, 2) * startPoint.position + 2 * (1 - t) * t * controlPoint +Mathf.Pow(t, 2) * endPoint.position;
+      coin.position = position;
+      yield return null;
+  }
+  coin.position = endPoint.position;
+```
+
+- **Using DOTween**
+
+  - Define the start, midpoint, and endpoint for the curved path.
+  - Animate the coin along the path.
+
+```cs
+  Vector3 start = coinStart.position;
+  Vector3 end = goldUI.position;
+  Vector3 control = (start + end) / 2 + Vector3.up * 100f;  // Midpoint for curve
+
+  Vector3[] path = new Vector3[] { start, control, end };  // Define path
+
+  coin.DOMovePath(path, animationDuration, PathType.CatmullRom)
+      .SetEase(Ease.InOutQuad);
+```
+
 ---
 
 ### Animation
@@ -236,6 +291,26 @@ Some Unity interview questions that may come up during the process:
 
   - Apply a shader that uses a normal map or a displacement effect to simulate the dent without altering the actual geometry.
 
+**7.4 Senario: If combining a 3D character into one mesh to use a single material. how do you change the color of just the necklace on that character.**
+
+- **Change the Texture**
+
+  - Find the texture your character is using.
+  - Change the color of the area that corresponds to the necklace using image editor.
+
+- **Use a Shader:**
+
+- Assign unique vertex colors (like red) to the necklace in a 3D modeling tool.
+- Use the shader to adjust only the necklace's color in Unity
+
+**7.5 Senario: How to create a clear, see-through glass material in Unity that also reflects light and the environment**
+
+- Create a new material and change these settings:
+  - Surface Type: Transparent
+  - Color: Black - Alpha: 0
+  - Refraction model: Thin
+  - smoothness: 1
+
 ---
 
 ### Optimization
@@ -318,6 +393,23 @@ Check out my [Unity Optimization](../../unity-docs/unity-optimizing.md) page for
   - Avoid using overly high bit rates for background audio, especially on mobile, as they can impact performance.
   - Use mipmaps or audio stream compression for efficient memory usage.
 
+  **8.4 Senario: My game takes too long to load because of too many prefabs. How can I fix this?**
+
+- **Use Addressables**
+
+  - Convert your prefabs into Addressable Assets.
+  - Load them only when needed during gameplay.
+
+- **Object Pooling**
+
+  - Reuse objects instead of repeatedly creating and destroying them.
+  - Great for frequently used prefabs like enemies or projectiles.
+
+- **Optimize Scene Structure**
+
+  - Split large scenes into smaller ones.
+  - Use additive (async) loading to load sections only when required.
+
 ---
 
 ### MonoBehaviour
@@ -382,3 +474,13 @@ Check out my [Unity Optimization](../../unity-docs/unity-optimizing.md) page for
 - Sync Game State: Use network variables or RPCs for actions and updates.
 - Spawn Players: Auto-spawn player prefabs on client connect.
 - Test & Deploy: Test locally, then host using a dedicated server or cloud service.
+
+---
+
+### Others
+
+**11.1 Whats CI/CD?**
+
+Continuous Integration (CI) and Continuous Delivery/Deployment (CD) are practices designed to automate the integration, testing, and deployment processes in software development
+
+Example: In my previous project, I used GitHub Actions to trigger automatic Unity builds and deployed them through a hub app to team members for playtesting whenever code was pushed to the main branch. This streamlined the testing process and enabled quick feedback on new builds.
