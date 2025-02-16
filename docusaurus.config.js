@@ -90,7 +90,7 @@ const config = {
             to: "/docs/tradeBot-docs/intro",
             type: "docSidebar",
             sidebarId: "tradeBotSidebar",
-            position: "right",
+            position: "left",
           },
 
           // {
