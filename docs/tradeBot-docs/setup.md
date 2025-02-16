@@ -15,7 +15,7 @@ sidebar_position: 1
 - [git](https://git-scm.com/downloads)
 - TA-Lib `pip install TA-Lib`
 - Virtualenv (Recommended) `python -m pip install --user virtualenv`
-- [Docker (Recommended)](<(https://docs.docker.com/desktop/setup/install/windows-install/)>)
+- [Docker (Recommended)](https://docs.docker.com/desktop/setup/install/windows-install/)
 
 ### Create Telegram Bot (Optional)
 
