@@ -1,0 +1,150 @@
+namespace ygg.common.webgl
+{
+    using System.Runtime.InteropServices;
+    using Newtonsoft.Json;
+    using UnityEngine;
+
+    public static partial class WebGLMessageCaller
+    {
+        [DllImport("__Internal")]
+        private static extern bool _isMobile();
+        [DllImport("__Internal")]
+        private static extern void _sendMessageString(string method, string msg);
+        [DllImport("__Internal")]
+        private static extern void _postMessageDataString(string msgData, string targetOrigin);
+        
+        [DllImport("__Internal")]
+        private static extern void _sendMessageNumber(string method, int number);
+        [DllImport("__Internal")]
+        private static extern void _sendMessageFloatNumber(string method, float number);
+        [DllImport("__Internal")]
+        private static extern void _sendMessageDoubleNumber(string method, double number);
+        [DllImport("__Internal")]
+        private static extern void _sendMessage(string method);
+
+        [DllImport("__Internal")]
+        private static extern string _getCurrentOrientation();
+
+        [DllImport("__Internal")]
+        private static extern string _getStringDataFromLocalStorage(string method);
+
+        private static int _isMobileDevice = -1;
+
+        public static bool IsMobile()
+        {
+            if (_isMobileDevice == -1)
+            {
+#if !UNITY_EDITOR && UNITY_WEBGL
+                _isMobileDevice = _isMobile() ? 1 : 0;
+#else
+                _isMobileDevice = Application.isMobilePlatform ? 1 : 0;
+#endif
+            }
+            return _isMobileDevice == 1;
+        }
+
+        public static void SendMessage(string functionName, string message)
+        {
+#if !UNITY_EDITOR && UNITY_WEBGL
+                    _sendMessageString(functionName, message);
+#endif
+        }
+        public static void SendMessage(string functionName, int number)
+        {
+#if !UNITY_EDITOR && UNITY_WEBGL
+                    _sendMessageNumber(functionName, number);
+#endif
+        }
+        public static void SendMessage(string functionName, float number)
+        {
+#if !UNITY_EDITOR && UNITY_WEBGL
+                    _sendMessageFloatNumber(functionName, number);
+#endif
+        }
+
+        public static void SendMessage(string functionName, double number)
+        {
+#if !UNITY_EDITOR && UNITY_WEBGL
+                    _sendMessageDoubleNumber(functionName, number);
+#endif
+        }
+
+        public static void SendMessage(string functionName)
+        {
+#if !UNITY_EDITOR && UNITY_WEBGL
+                    _sendMessage(functionName);
+#endif
+        }
+
+        public static void SendCustomMessage(string jsonData, string targetDomain = "*")
+        {
+#if !UNITY_EDITOR && UNITY_WEBGL
+            _postMessageDataString(jsonData, targetDomain);
+#endif
+        }
+
+        public static string GetCurrentOrientation()
+        {
+#if !UNITY_EDITOR && UNITY_WEBGL
+            return _getCurrentOrientation();
+#endif
+            return "landscape";
+        }
+
+        public static string GetStringDataFromLocalStorage(string dataKeyName)
+        {
+#if !UNITY_EDITOR && UNITY_WEBGL
+            return _getStringDataFromLocalStorage(dataKeyName);
+#endif
+            return string.Empty;
+        }
+
+        public static void TokenExpired(string targetDomain = "*")
+        {
+#if !UNITY_EDITOR && UNITY_WEBGL
+            var data = new SendMessageContentDataString
+            {
+                type = "tokenExpired"
+            };
+            var json = JsonConvert.SerializeObject(data);
+            _postMessageDataString(json, targetDomain); 
+#endif
+        }
+
+        public static void ResetGame(string targetDomain = "*")
+        {
+#if !UNITY_EDITOR && UNITY_WEBGL
+            var data = new SendMessageContentDataString
+            {
+                type = "resetGame"
+            };
+            var json = JsonConvert.SerializeObject(data);
+            _postMessageDataString(json, targetDomain);
+#endif
+        }
+
+        public static void GameIsReady(string targetDomain = "*")
+        {
+#if !UNITY_EDITOR && UNITY_WEBGL
+            var data = new SendMessageContentDataString
+            {
+                type = "gameReady"
+            };
+            var json = JsonConvert.SerializeObject(data);
+            _postMessageDataString(json, targetDomain);
+#endif
+        }
+
+        public static void GetJwt(string targetDomain = "*")
+        {
+#if !UNITY_EDITOR && UNITY_WEBGL
+            var data = new SendMessageContentDataString
+            {
+                type = "getJWT"
+            };
+            var json = JsonConvert.SerializeObject(data);
+            _postMessageDataString(json, targetDomain);
+#endif
+        }
+    }
+}

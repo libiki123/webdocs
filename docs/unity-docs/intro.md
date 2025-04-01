@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Unity Docs - Intro
+# Intro
 
 ## Purpose
 
