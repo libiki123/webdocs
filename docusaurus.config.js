@@ -69,15 +69,27 @@ const config = {
           // Left side
           {
             label: "General",
-            to: "/docs/web-docs/intro",
+            to: "/docs/general-docs/intro",
             type: "docSidebar",
-            sidebarId: "webSidebar",
+            sidebarId: "generalSidebar",
           },
           {
             label: "Unity",
             to: "/docs/unity-docs/intro",
             type: "docSidebar",
             sidebarId: "unitySidebar",
+          },
+          // {
+          //   label: "Design",
+          //   to: "/docs/design-docs/intro",
+          //   type: "docSidebar",
+          //   sidebarId: "designSidebar",
+          // },
+          {
+            label: "Devops",
+            to: "/docs/devops-docs/intro",
+            type: "docSidebar",
+            sidebarId: "devopsSidebar",
           },
           {
             label: "Interview",
@@ -175,16 +187,20 @@ const config = {
   themes: [
     // ... Your other themes.
     [
+      // @ts-ignore
       require.resolve("@easyops-cn/docusaurus-search-local"),
       /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
+      // @ts-ignore
       ({
         // ... Your options.
         // `hashed` is recommended as long-term-cache of index file is possible.
         hashed: true,
-        // For Docs using Chinese, The `language` is recommended to set to:
-        // ```
+
+        // For Docs using Chinese, it is recomended to set:
         // language: ["en", "zh"],
-        // ```
+
+        // If you're using `noIndex: true`, set `forceIgnoreNoIndex` to enable local index:
+        // forceIgnoreNoIndex: true,
       }),
     ],
   ],
